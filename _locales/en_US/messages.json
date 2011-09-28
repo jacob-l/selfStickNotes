@@ -1,0 +1,18 @@
+﻿{
+	"removeAllButton": {
+		"message": "Remove all",
+		"description": "Text for button on popup window"
+	},
+	"pluginDescription": {
+		"message": "You can use self-stick notes on any page",
+		"description": "Description for extension"
+	},
+	"dragMe": {
+		"message": "Drag me",
+		"description": "Advice at the top of new note"
+	},
+	"typeMe": {
+		"message": "Type note",
+		"description": "Advice in the Text Area"
+	}
+}
