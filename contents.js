@@ -61,7 +61,6 @@ function NoteManagerSingleton() {
 	}
 	
 	eventHandlers.clickAction = function() {
-		console.log("a");
 		isVisibleNow = !isVisibleNow;
 		if (!popupManager) {
 			popupManager = popupGenerator({
@@ -139,7 +138,6 @@ function NoteManagerSingleton() {
 
 SSN = {};
 try {
-console.log("start");
 SSN.states = {}
 SSN.states.zIndex = 1000;
 SSN.states.isRemoveVisible = false;
@@ -176,7 +174,6 @@ SSN.clsSelectors.widgetContent = "ui-widget-content";
 
 SSN.specialAttributes = {};
 SSN.specialAttributes.removeAll = "removeAll";
-console.log("end");
 SSN.manager = new NoteManagerSingleton();
 
 } catch (exception) {

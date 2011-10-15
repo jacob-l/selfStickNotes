@@ -39,7 +39,7 @@ function noteGenerator(config) {
 	}
 	
 	var jNoteContent = getJElement({
-		html: "pre",
+		html: "div",
 		cls: [SSN.clsSelectors.resizable, SSN.cls.noteContent, SSN.cls.text].join(' '),
 		items: [config.obj.note],
 		attributes: config.contentAttributes
