@@ -58,7 +58,8 @@ function noteGenerator(config) {
 		items: jNoteItems
 	});
 	
-	jNote.css('left', Number(config.obj.x)).css('top', Number(config.obj.y));
+	jNote.css('left', Number(config.obj.x)).css('top', Number(config.obj.y))
+		.css("background-color", getValidColor(config.backgroundColor, "ffff00"));
 	if (config.editable) {
 		jNote.attr(SSN.specialAttributes.removeAll, SSN.consts.removeFalse);
 	} else {

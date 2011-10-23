@@ -3,6 +3,7 @@
 	"version": "1.0.0.4",
 	"description": "__MSG_pluginDescription__",
 	"background_page": "bg.html",
+	"options_page": "options/options.html",
 	"default_locale": "en_US",
 	"permissions": [
 		"tabs",
@@ -17,11 +18,10 @@
 		"default_icon"	: "icon19.png",
 		"default_title"	: "Add new notes to this page"
 	},
-	"content_security_policy": "default-src 'self' ",
 	"content_scripts": [
 	{
 		"matches": ["<all_urls>"],
-		"js": ["thirdparty/jquery.min.js", "thirdparty/jquery-ui.min.js", "elements.js", "popup.js", "contents.js"],
+		"js": ["thirdparty/jquery.min.js", "thirdparty/jquery-ui.min.js", "util.js", "elements.js", "popup.js", "contents.js"],
 		"css": ["contentStyles.css"]
 	}
 	]

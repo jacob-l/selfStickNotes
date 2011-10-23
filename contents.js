@@ -5,7 +5,8 @@ function NoteManagerSingleton() {
 	var eventHandlers = {};
 	var popupManager;
 	var isVisibleNow = false;
-	
+	var settings = {};
+
 	var restoreArray = function() {
 		var stringifiedObject = localStorage[window.location.href] || "[]";
 		try {
@@ -14,7 +15,7 @@ function NoteManagerSingleton() {
 			notesArray = [];
 		}
 	}
-	
+
 	var rememberArray = function() {
 		var forRemember = [];
 		for (var i = 0; i < notesArray.length; i++) {
@@ -24,14 +25,14 @@ function NoteManagerSingleton() {
 		}
 		localStorage[window.location.href] = JSON.stringify(forRemember);
 	}
-	
+
 	var removeItem = function(id) {
 		if (id == null)
 			return;
 		notesArray[id] = null;
 		rememberArray();
 	}
-	
+
 	var formNote = function(id) {
 		var config = {};
 		config.obj = notesArray[id];
@@ -41,7 +42,8 @@ function NoteManagerSingleton() {
 				config.obj.y = ui.offset.top;
 				rememberArray();
 			};
-			
+		config.backgroundColor = settings.backgroundColor;
+
 		var jNote = noteGenerator(config);
 		addRemoveAction(function() {
 			removeItem(id);
@@ -49,7 +51,7 @@ function NoteManagerSingleton() {
 
 		return jNote;
 	}
-	
+
 	var restoreAllNotes = function() {
 		for (var i = 0; i < notesArray.length; i++) {
 			try {
@@ -59,7 +61,7 @@ function NoteManagerSingleton() {
 			}
 		}
 	}
-	
+
 	eventHandlers.clickAction = function() {
 		isVisibleNow = !isVisibleNow;
 		if (!popupManager) {
@@ -69,15 +71,13 @@ function NoteManagerSingleton() {
 		}
 		if (isVisibleNow) {
 			popupManager.show();
-			//$("." + SSN.cls.managableActions).show();
 		}
 		else {
-			//$("." + SSN.cls.managableActions).hide();
 			popupManager.hide();
 		}
 		popupManager.find(SSN.consts.focusPopup).focus();
 	}
-	
+
 	var initEvents = function() {
 		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			if (eventHandlers[request.event]) {
@@ -86,24 +86,25 @@ function NoteManagerSingleton() {
 		});
 	}
 
-	var init = function() {
+	var init = function(bgSettings) {
+		settings = bgSettings || {};
 		restoreArray();
 		restoreAllNotes();
 		initEvents();
 	}
-	
+
 	//public methods
 	this.appendExistingNote = function(jNote) {
 		var noteObj = {};
 		noteObj.x = jNote.offset().left;
 		noteObj.y = jNote.offset().top;
 		noteObj.note = jNote.find("." + SSN.cls.noteContent).html();
-		
+
 		var id = notesArray.push(noteObj) - 1;
 		addRemoveAction(function() {
 			removeItem(id);
 		}, jNote);
-		
+
 		jNote.bind(SSN.events.dragStop, function(event, ui) {
 				noteObj.x = ui.offset.left;
 				noteObj.y = ui.offset.top;
@@ -112,13 +113,13 @@ function NoteManagerSingleton() {
 		rememberArray();
 		this.handleRemoveAction();
 	}
-	
+
 	this.removeAll = function() {
 		notesArray = [];
 		$('['+SSN.specialAttributes.removeAll+'="' + SSN.consts.removeTrue + '"]').remove();
 		rememberArray();
 	}
-	
+
 	this.handleRemoveAction = function() {
 		if (SSN.states.isRemoveVisible) {
 			$("." + SSN.cls.managableActions).show();
@@ -127,13 +128,20 @@ function NoteManagerSingleton() {
 			$("." + SSN.cls.managableActions).hide();
 		}
 	}
-	
+
 	this.clickRemoveActions = function() {
 		SSN.states.isRemoveVisible = !SSN.states.isRemoveVisible;
 		this.handleRemoveAction();
 	}
+
+	this.getSettings = function() {
+		return settings;
+	}
+
 	//
-	init();
+	chrome.extension.sendRequest({method: "getSettings"}, function(response) {
+		init(response.settings);
+	});
 }
 
 SSN = {};
@@ -175,7 +183,6 @@ SSN.clsSelectors.widgetContent = "ui-widget-content";
 SSN.specialAttributes = {};
 SSN.specialAttributes.removeAll = "removeAll";
 SSN.manager = new NoteManagerSingleton();
-
 } catch (exception) {
 	console.log(exception.message);
 }

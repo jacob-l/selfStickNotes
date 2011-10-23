@@ -2,7 +2,6 @@
 {
 	width: 200px;
 	height: auto;
-	background: #ffff00 !important;
 	left: 0px;
 	top: 0px;
 	position: absolute;
@@ -74,7 +73,7 @@
 .editableContent36e67545-d7d5-4ad9-be98-547b75db57e6
 {
 	width: 170px !important;
-	background: #ffff00 !important;
+	background: transparent !important;
 	height: 170px !important;
 	border: 0px !important;
 	outline: none !important;

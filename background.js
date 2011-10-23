@@ -12,3 +12,10 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 		}
 	}, function(){});
 });
+
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    if (request.method == "getSettings")
+      sendResponse({settings: JSON.parse(localStorage['settings'])});
+    else
+      sendResponse({});
+});
