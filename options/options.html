@@ -1,14 +1,30 @@
 <html>
 <head>
-	<title>My Test Extension Options</title>
-	<meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
-	<script type="text/javascript" src="/thirdparty/jquery.min.js"></script>
-	<script type="text/javascript" src="options.js"></script>
-	<script type="text/javascript" src="/thirdparty/jscolor/jscolor.js"></script>
+    <title>My Test Extension Options</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <script type="text/javascript" src="/thirdparty/jquery.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="options.js"></script>
+    <script type="text/javascript" src="/thirdparty/jscolor/jscolor.js"></script>
+    
+    <script id="noteColor_tmpl" type="text/x-jquery-tmpl">
+        <div id="noteColor" class="note">
+            <div class="label">
+            ${label}:
+            </div>
+            <input id="color" class="color" onchange="save_options()"/>
+            <div class="remark">
+            ${remark}
+            </div>
+        </div>
+    </script>
 </head>
 
-<body onload="restore_options();">
-	<input id="color" class="color" onchange="save_options()"/>
+<body>
+    <div style="position: absolute; top: 150; left: 150;" id="colorSettings">
+    </div>
 </body>
 
 </html>

@@ -16,3 +16,12 @@ function restore_options() {
   inputColor.val(favorite.backgroundColor);
   inputColor.css("background-color", favorite.backgroundColor);
 }
+
+$(function(){
+    $('#noteColor_tmpl').tmpl({
+        label: chrome.i18n.getMessage("noteColor"),
+        remark: chrome.i18n.getMessage("noteColorRemark")
+    }).appendTo('#colorSettings');
+      
+      restore_options();
+})

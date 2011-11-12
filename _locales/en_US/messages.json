@@ -1,18 +1,26 @@
 ﻿{
-	"removeAllButton": {
-		"message": "Remove all",
-		"description": "Text for button on popup window"
-	},
-	"pluginDescription": {
-		"message": "You can use self-stick notes on any page",
-		"description": "Description for extension"
-	},
-	"dragMe": {
-		"message": "Drag me",
-		"description": "Advice at the top of new note"
-	},
-	"typeMe": {
-		"message": "Type note",
-		"description": "Advice in the Text Area"
-	}
+    "removeAllButton": {
+        "message": "Remove all",
+        "description": "Text for button on popup window"
+    },
+    "pluginDescription": {
+        "message": "You can use self-stick notes on any page",
+        "description": "Description for extension"
+    },
+    "dragMe": {
+        "message": "Drag me",
+        "description": "Advice at the top of new note"
+    },
+    "typeMe": {
+        "message": "Type note",
+        "description": "Advice in the Text Area"
+    },
+    "noteColor": {
+        "message": "Color of note",
+        "description": "For page settings"
+    },
+    "noteColorRemark": {
+        "message": "Changes will be applied after newxt load",
+        "description": "For page settings about changes after load"
+    }
 }
