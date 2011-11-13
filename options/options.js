@@ -22,6 +22,7 @@ $(function(){
         label: chrome.i18n.getMessage("noteColor"),
         remark: chrome.i18n.getMessage("noteColorRemark")
     }).appendTo('#colorSettings');
-      
-      restore_options();
+
+    document.title = chrome.i18n.getMessage("options");
+    restore_options();
 })

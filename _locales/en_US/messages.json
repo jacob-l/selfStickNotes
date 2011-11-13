@@ -16,11 +16,19 @@
         "description": "Advice in the Text Area"
     },
     "noteColor": {
-        "message": "Color of note",
+        "message": "The color of sticker",
         "description": "For page settings"
     },
     "noteColorRemark": {
-        "message": "Changes will be applied after newxt load",
+        "message": "Changes become available with next loading of webpage",
         "description": "For page settings about changes after load"
+    },
+    "pageActionTitle": {
+        "message": "Add new notes to this page",
+        "descrition": "Tooltip for page action"
+    },
+    "options": {
+        "message": "Options",
+        "description": "Title to options page"
     }
 }
