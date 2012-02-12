@@ -16,7 +16,7 @@
     },
     "page_action": {
         "default_icon"    : "icon19.png",
-        "default_title"   : "Add new notes to this page"
+        "default_title"   : "__MSG_pageActionTitle__"
     },
     "content_scripts": [
     {
